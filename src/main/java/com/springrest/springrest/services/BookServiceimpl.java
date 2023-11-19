@@ -2,6 +2,7 @@ package com.springrest.springrest.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -51,14 +52,19 @@ public class BookServiceimpl implements BookService {
 
 	@Override
 	public Book updateBook(Book book) {
-		// TODO Auto-generated method stub
-		return null;
+		list.forEach(e->{
+			if(e.getId()==book.getId()) {
+				e.setTitle(book.getTitle());
+				e.setDescription(book.getDescription());
+			}
+		});
+		return book;
 	}
 
 
 	@Override
 	public void deleteBook(long id) {
-		// TODO Auto-generated method stub
+		  list.stream().filter(e -> e.getId() != id).collect(Collectors.toList());
 		
 	}
 
