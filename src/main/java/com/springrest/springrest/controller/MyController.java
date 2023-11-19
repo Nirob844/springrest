@@ -2,9 +2,11 @@ package com.springrest.springrest.controller;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.springrest.springrest.entities.Book;
@@ -36,5 +38,15 @@ public class MyController {
     @PostMapping("/books")
     public Book addBook(@RequestBody Book book) {
         return this.bookService.addBook(book);
+    }
+    // update book
+    @PutMapping("/books")
+    public Book updateBook(@RequestBody Book book) {
+    	return this.bookService.updateBook(book);
+    }
+ // Delete book
+    @DeleteMapping("/books/{id}")
+    public void deleteBook(@PathVariable String id) {
+        this.bookService.deleteBook(Long.parseLong(id));
     }
 }
